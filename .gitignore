@@ -1,0 +1,5 @@
+.env/
+.vscode/
+.zed/
+__pycache__/
+.idea/
