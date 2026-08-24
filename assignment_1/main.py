@@ -14,18 +14,14 @@ def print_image_information(image: pathlib.Path):
     print(f'Size: {img_info.size}')
     print(f'Data type {img_info.dtype}')
 
-    cv2.imshow('image', img_info)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
 def create_camera_output_information(save_path: pathlib.Path):
-    cam = cv2.VideoCapture(0)
-    if cam.isOpened() != True:
-        cam.open()
+    camera = cv2.VideoCapture(0)
+    if camera.isOpened() != True:
+        camera.open()
 
-    frame_width = int(cam.get(cv2.CAP_PROP_FRAME_WIDTH))
-    frame_height = int(cam.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    framerate = cam.get(cv2.CAP_PROP_FPS)
+    frame_width = int(camera.get(cv2.CAP_PROP_FRAME_WIDTH))
+    frame_height = int(camera.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    framerate = camera.get(cv2.CAP_PROP_FPS)
 
     file_to_write = save_path / 'camera_outputs.txt'
 
@@ -34,7 +30,7 @@ def create_camera_output_information(save_path: pathlib.Path):
         f.write(f'Frame width: {frame_width}\n')
         f.write(f'Frame height: {frame_height}\n')
 
-    cam.release()
+    camera.release()
 
 def main():
     script_dir = pathlib.Path(__file__).parent
